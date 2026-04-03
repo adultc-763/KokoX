@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-ad"></i> {% if ad %}Edit Ad{% else %}Create New Ad{% endif %}</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control") }}
+                        {% if form.name.errors %}
+                        <div class="text-danger">
+                            {% for error in form.name.errors %}
+                            <small>{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.type.label(class="form-label") }}
+                        {{ form.type(class="form-select") }}
+                        <small class="form-text text-muted">
+                            <strong>Banner:</strong> 728x90 top ad<br>
+                            <strong>Native:</strong> Responsive content ad<br>
+                            <strong>Social:</strong> Floating social bar<br>
+                            <strong>Popunder:</strong> Video-triggered popup
+                        </small>
+                        {% if form.type.errors %}
+                        <div class="text-danger">
+                            {% for error in form.type.errors %}
+                            <small>{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        {{ form.is_active(class="form-check-input") }}
+                        {{ form.is_active.label(class="form-check-label") }}
+                        <small class="form-text text-muted">
+                            Enable this ad type on your website
+                        </small>
+                    </div>
+                    
+                    <!-- Adsterra Code Fields -->
+                    {% if ad and ad.type in ['banner', 'native', 'social', 'popunder'] %}
+                    <div class="mb-3">
+                        <h6><i class="fas fa-code"></i> Adsterra Code</h6>
+                        <div class="bg-light p-3 rounded">
+                            <small class="text-muted">Current Adsterra code for this ad type:</small>
+                            <div class="mt-2">
+                                {% if ad.type == 'banner' %}
+                                <strong>Banner Code:</strong>
+                                <pre class="bg-white p-2 rounded mt-2"><code>{{ ad.banner_code }}</code></pre>
+                                {% elif ad.type == 'native' %}
+                                <strong>Native Code:</strong>
+                                <pre class="bg-white p-2 rounded mt-2"><code>{{ ad.native_code }}</code></pre>
+                                {% elif ad.type == 'social' %}
+                                <strong>Social Bar Code:</strong>
+                                <pre class="bg-white p-2 rounded mt-2"><code>{{ ad.social_code }}</code></pre>
+                                {% elif ad.type == 'popunder' %}
+                                <strong>Popunder Code:</strong>
+                                <pre class="bg-white p-2 rounded mt-2"><code>{{ ad.popunder_code }}</code></pre>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Adsterra Code Information -->
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle"></i> Adsterra Integration</h6>
+                        <p class="mb-2">This system uses your Adsterra codes automatically:</p>
+                        <ul class="mb-0">
+                            <li><strong>Banner:</strong> Uses your 728x90 Adsterra banner code</li>
+                            <li><strong>Native:</strong> Uses your native banner Adsterra code</li>
+                            <li><strong>Social:</strong> Uses your social bar Adsterra code</li>
+                            <li><strong>Popunder:</strong> Uses your popunder Adsterra code</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('manage_ads') }}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> {% if ad %}Update Ad{% else %}Create Ad{% endif %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Ad Placement Information -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5><i class="fas fa-map-marker-alt"></i> Ad Placement Details</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>📱 Mobile & Desktop Placements:</h6>
+                        <ul>
+                            <li><strong>Banner:</strong> Top of every page</li>
+                            <li><strong>Native:</strong> Between content areas</li>
+                            <li><strong>Social:</strong> Desktop: Right sidebar | Mobile: Bottom bar</li>
+                            <li><strong>Popunder:</strong> Video play click trigger</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>💰 Revenue Features:</h6>
+                        <ul>
+                            <li>Automatic impression tracking</li>
+                            <li>Real-time ad status monitoring</li>
+                            <li>Mobile-optimized ad display</li>
+                            <li>Adsterra direct integration</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> <strong>Ready to earn!</strong> Your Adsterra ads are configured for maximum revenue potential.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
