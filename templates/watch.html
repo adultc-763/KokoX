@@ -251,19 +251,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- Popunder Ad -->
-{% if ads.popunder %}
-<script>
-// Trigger popunder when user loads video page (any click)
-document.addEventListener('DOMContentLoaded', function() {
-    // Load popunder script immediately on video page load
-    if (!window.popunderLoaded) {
-        const script = document.createElement('script');
-        script.src = 'https://pl27466028.profitablecpmratenetwork.com/1c/ec/ba/1cecba33959a73dc0225a98248e1e330.js';
-        document.body.appendChild(script);
-        window.popunderLoaded = true;
-    }
-});
-</script>
+{% if ads.popunder and ads.popunder.is_active %}
+<script src="https://pl29066330.profitablecpmratenetwork.com/29/e0/fc/29e0fc050b479081087b3c1772390eca.js"></script>
 {% endif %}
 
 {% endblock %}

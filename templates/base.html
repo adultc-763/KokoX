@@ -148,13 +148,42 @@
     </nav>
 
     <!-- Native Banner Ad -->
-    {% if ads.native %}
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-12">
-                <div class="text-center">
-                    {{ ads.native.native_code|safe }}
-                </div>
+    {% if ads.native and ads.native.is_active %}
+    <div class="container mt-4">
+        <div class="native-ad bg-light rounded p-3">
+            <script async="async" data-cfasync="false" src="https://pl29066331.profitablecpmratenetwork.com/9ada1a79dd148ed2e72acd210b82b70f/invoke.js"></script>
+            <div id="container-9ada1a79dd148ed2e72acd210b82b70f"></div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Banner Ad -->
+    {% if ads.banner and ads.banner.is_active %}
+    <div class="container mt-4">
+        <div class="text-center">
+            <style>
+                .responsive-banner {
+                    max-width: 100%;
+                    overflow: hidden;
+                }
+                @media (max-width: 768px) {
+                    .responsive-banner iframe {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            </style>
+            <div class="responsive-banner">
+                <script>
+                  atOptions = {
+                    'key' : 'e458dc349f99e4ca0b64bfa6b7555153',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                  };
+                </script>
+                <script src="https://www.highperformanceformat.com/e458dc349f99e4ca0b64bfa6b7555153/invoke.js"></script>
             </div>
         </div>
     </div>
@@ -163,7 +192,7 @@
     <!-- Social Bar Ad -->
     {% if ads.social %}
     <div id="social-bar-ad" class="social-bar-ad">
-        {{ ads.social.social_code|safe }}
+        <script src="https://pl29066333.profitablecpmratenetwork.com/48/c4/d3/48c4d320b003eaf50e6357ba65deef2a.js"></script>
     </div>
     {% endif %}
 
