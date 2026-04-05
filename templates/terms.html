@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2><i class="fas fa-gavel"></i> Terms of Service</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <strong>Last Updated:</strong> {{ moment().format('MMMM D, YYYY') }}
+                    </div>
+                    
+                    <h4 class="mt-4">1. Age Requirement</h4>
+                    <p>You must be at least 18 years of age to access and use this website. By accessing KokoX, you confirm that you meet this age requirement.</p>
+                    
+                    <h4 class="mt-4">2. Adult Content</h4>
+                    <p>This website contains adult content intended for mature audiences only. All content is legal and compliant with applicable laws.</p>
+                    
+                    <h4 class="mt-4">3. User Responsibilities</h4>
+                    <ul>
+                        <li>You are responsible for all activity under your account</li>
+                        <li>You must not share access with minors</li>
+                        <li>You must comply with all applicable laws</li>
+                        <li>You may not distribute content without permission</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">4. Content Guidelines</h4>
+                    <p>All content must be legal and comply with our community standards. We reserve the right to remove any content that violates these terms.</p>
+                    
+                    <h4 class="mt-4">5. Privacy and Data</h4>
+                    <p>We respect your privacy and handle data according to our Privacy Policy. By using this site, you consent to our data practices.</p>
+                    
+                    <h4 class="mt-4">6. Intellectual Property</h4>
+                    <p>All content on this site is protected by copyright. You may not use, reproduce, or distribute content without explicit permission.</p>
+                    
+                    <h4 class="mt-4">7. Disclaimer</h4>
+                    <p>KokoX is not responsible for user-generated content. All content is provided "as is" without warranties.</p>
+                    
+                    <h4 class="mt-4">8. Limitation of Liability</h4>
+                    <p>KokoX is not liable for any damages arising from your use of this service. Use at your own risk.</p>
+                    
+                    <h4 class="mt-4">9. Termination</h4>
+                    <p>We reserve the right to terminate access for violations of these terms at our sole discretion.</p>
+                    
+                    <h4 class="mt-4">10. Changes to Terms</h4>
+                    <p>We may update these terms at any time. Continued use constitutes acceptance of changes.</p>
+                    
+                    <div class="alert alert-info mt-4">
+                        <strong>Contact:</strong> For questions about these terms, contact us at admin@kokox.com
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

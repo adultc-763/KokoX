@@ -20,11 +20,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
-# Database configuration - Use PostgreSQL in production, SQLite locally
-if os.getenv('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'video_platform.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'video_platform.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static', 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024  # 500MB max file size
@@ -203,6 +199,40 @@ def inject_ads():
         db.session.commit()
     
     return {'ads': ad_codes}
+
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+@app.route('/verify-age', methods=['GET', 'POST'])
+def age_verification():
+    # Check if already verified
+    verified = request.cookies.get('age_verified') == 'true'
+    if verified:
+        return redirect(url_for('index'))
+    
+    if request.method == 'POST':
+        # User confirmed they are 18+
+        response = make_response(redirect(url_for('index')))
+        response.set_cookie('age_verified', 'true', max_age=31536000)  # 1 year
+        return response
+    
+    return render_template('age_verify.html')
+
+@app.before_request
+def check_age_verification():
+    # Skip age check for legal pages and static files
+    if request.endpoint in ['terms', 'privacy', 'age_verification', 'static', 'login']:
+        return
+    
+    # Check if user is age verified
+    verified = request.cookies.get('age_verified') == 'true'
+    if not verified and request.endpoint != 'age_verification':
+        return redirect(url_for('age_verification'))
 
 @app.route('/')
 def index():

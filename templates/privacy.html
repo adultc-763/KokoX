@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Last Updated:</strong> {{ moment().format('MMMM D, YYYY') }}
+                    </div>
+                    
+                    <h4 class="mt-4">1. Information We Collect</h4>
+                    <p>We collect information you provide directly, including:</p>
+                    <ul>
+                        <li>Email address (for account creation)</li>
+                        <li>Username and password</li>
+                        <li>Viewing preferences</li>
+                        <li>Usage data and analytics</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">2. How We Use Your Information</h4>
+                    <p>Your information is used to:</p>
+                    <ul>
+                        <li>Provide and maintain our service</li>
+                        <li>Improve user experience</li>
+                        <li>Analyze site usage and performance</li>
+                        <li>Communicate with users</li>
+                        <li>Ensure site security</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">3. Data Storage and Security</h4>
+                    <p>We implement appropriate security measures to protect your personal information:</p>
+                    <ul>
+                        <li>Secure password hashing</li>
+                        <li>Encrypted data transmission</li>
+                        <li>Regular security updates</li>
+                        <li>Limited access to personal data</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">4. Cookies and Tracking</h4>
+                    <p>We use cookies and similar technologies to:</p>
+                    <ul>
+                        <li>Remember your preferences</li>
+                        <li>Analyze site traffic</li>
+                        <li>Personalize content</li>
+                        <li>Age verification compliance</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">5. Third-Party Services</h4>
+                    <p>We may share information with:</p>
+                    <ul>
+                        <li>Payment processors (for transactions)</li>
+                        <li>Analytics providers (anonymized data)</li>
+                        <li>Content delivery networks</li>
+                        <li>Legal authorities when required</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">6. Your Rights</h4>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access your personal data</li>
+                        <li>Correct inaccurate information</li>
+                        <li>Request data deletion</li>
+                        <li>Opt-out of marketing communications</li>
+                        <li>Data portability</li>
+                    </ul>
+                    
+                    <h4 class="mt-4">7. Data Retention</h4>
+                    <p>We retain personal information only as long as necessary for the purposes outlined in this policy.</p>
+                    
+                    <h4 class="mt-4">8. International Users</h4>
+                    <p>Your data may be transferred to and processed in countries other than your own. We ensure appropriate protection measures.</p>
+                    
+                    <h4 class="mt-4">9. Children's Privacy</h4>
+                    <p>Our service is not intended for children under 18. We do not knowingly collect personal information from minors.</p>
+                    
+                    <h4 class="mt-4">10. Policy Updates</h4>
+                    <p>We may update this privacy policy. Changes will be posted on this page with an updated date.</p>
+                    
+                    <div class="alert alert-warning mt-4">
+                        <strong>Important:</strong> By using KokoX, you acknowledge that you have read and understood this Privacy Policy.
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
