@@ -1,15 +1,14 @@
-import os
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_wtf import FlaskForm, CSRFProtect
-from wtforms import StringField, TextAreaField, PasswordField, SelectField, BooleanField, FileField, IntegerField, FloatField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, PasswordField, FileField, SelectField, IntegerField, FloatField, BooleanField
+from wtforms.validators import DataRequired, Length, NumberRange
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import or_ as db_or_
 from datetime import datetime
 import os
-from sqlalchemy import or_ as db_or_
 from PIL import Image
 from dotenv import load_dotenv
 
@@ -199,40 +198,6 @@ def inject_ads():
         db.session.commit()
     
     return {'ads': ad_codes}
-
-@app.route('/terms')
-def terms():
-    return render_template('terms.html')
-
-@app.route('/privacy')
-def privacy():
-    return render_template('privacy.html')
-
-@app.route('/verify-age', methods=['GET', 'POST'])
-def age_verification():
-    # Check if already verified
-    verified = request.cookies.get('age_verified') == 'true'
-    if verified:
-        return redirect(url_for('index'))
-    
-    if request.method == 'POST':
-        # User confirmed they are 18+
-        response = make_response(redirect(url_for('index')))
-        response.set_cookie('age_verified', 'true', max_age=31536000)  # 1 year
-        return response
-    
-    return render_template('age_verify.html')
-
-@app.before_request
-def check_age_verification():
-    # Skip age check for legal pages and static files
-    if request.endpoint in ['terms', 'privacy', 'age_verification', 'static', 'login']:
-        return
-    
-    # Check if user is age verified
-    verified = request.cookies.get('age_verified') == 'true'
-    if not verified and request.endpoint != 'age_verification':
-        return redirect(url_for('age_verification'))
 
 @app.route('/')
 def index():
@@ -691,7 +656,7 @@ def save_settings():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Create tables if they don't exist
+        db.create_all()
         
         # Create admin user if not exists
         admin = User.query.filter_by(username='admin').first()
