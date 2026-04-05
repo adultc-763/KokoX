@@ -201,19 +201,28 @@ def inject_ads():
 
 @app.route('/age-verify')
 def age_verification():
+    # Don't redirect if already on age verification page
+    if request.referrer and 'age-verify' in request.referrer:
+        return render_template('age_verify.html')
+    
+    # Check if already verified
+    age_verified = request.cookies.get('age_verified')
+    if age_verified == 'true':
+        return redirect(url_for('index'))
+    
     return render_template('age_verify.html')
 
 @app.route('/terms')
-def terms_of_service():
+def terms():
     return render_template('terms.html')
 
 @app.route('/privacy')
-def privacy_policy():
+def privacy():
     return render_template('privacy.html')
 
 @app.route('/')
 def index():
-    # Check age verification
+    # Check age verification (but not if coming from age verification page)
     age_verified = request.cookies.get('age_verified')
     if not age_verified or age_verified != 'true':
         return redirect(url_for('age_verification'))
