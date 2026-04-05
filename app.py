@@ -199,8 +199,25 @@ def inject_ads():
     
     return {'ads': ad_codes}
 
+@app.route('/age-verify')
+def age_verification():
+    return render_template('age_verify.html')
+
+@app.route('/terms')
+def terms_of_service():
+    return render_template('terms.html')
+
+@app.route('/privacy')
+def privacy_policy():
+    return render_template('privacy.html')
+
 @app.route('/')
 def index():
+    # Check age verification
+    age_verified = request.cookies.get('age_verified')
+    if not age_verified or age_verified != 'true':
+        return redirect(url_for('age_verification'))
+    
     page = request.args.get('page', 1, type=int)
     search = request.args.get('search', '').strip()
     category_filter = request.args.get('category', '')
@@ -231,6 +248,11 @@ def index():
 
 @app.route('/video/<int:video_id>')
 def watch_video(video_id):
+    # Check age verification
+    age_verified = request.cookies.get('age_verified')
+    if not age_verified or age_verified != 'true':
+        return redirect(url_for('age_verification'))
+    
     video = Video.query.get_or_404(video_id)
     if not video.is_published:
         flash('This video is not available.')

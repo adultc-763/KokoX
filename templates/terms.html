@@ -1,61 +1,69 @@
 {% extends "base.html" %}
 
+{% block title %}Terms of Service - KokoX{% endblock %}
+
 {% block content %}
-<div class="container py-5">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header">
                     <h2><i class="fas fa-gavel"></i> Terms of Service</h2>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-warning">
-                        <strong>Last Updated:</strong> {{ moment().format('MMMM D, YYYY') }}
+                    <div class="alert alert-danger">
+                        <strong>IMPORTANT:</strong> By using KokoX, you agree to these terms. Violation may result in immediate account termination.
                     </div>
-                    
-                    <h4 class="mt-4">1. Age Requirement</h4>
-                    <p>You must be at least 18 years of age to access and use this website. By accessing KokoX, you confirm that you meet this age requirement.</p>
-                    
-                    <h4 class="mt-4">2. Adult Content</h4>
-                    <p>This website contains adult content intended for mature audiences only. All content is legal and compliant with applicable laws.</p>
-                    
-                    <h4 class="mt-4">3. User Responsibilities</h4>
+
+                    <h4>1. Age Requirement</h4>
+                    <p>You must be <strong>18 years or older</strong> to access this website. By entering, you confirm that you are of legal adult age in your jurisdiction.</p>
+
+                    <h4>2. Content Guidelines</h4>
                     <ul>
-                        <li>You are responsible for all activity under your account</li>
-                        <li>You must not share access with minors</li>
-                        <li>You must comply with all applicable laws</li>
-                        <li>You may not distribute content without permission</li>
+                        <li>All content is intended for adult audiences only</li>
+                        <li>Users must comply with local laws regarding adult content</li>
+                        <li>Illegal content is strictly prohibited</li>
+                        <li>Copyright infringement is not allowed</li>
                     </ul>
-                    
-                    <h4 class="mt-4">4. Content Guidelines</h4>
-                    <p>All content must be legal and comply with our community standards. We reserve the right to remove any content that violates these terms.</p>
-                    
-                    <h4 class="mt-4">5. Privacy and Data</h4>
-                    <p>We respect your privacy and handle data according to our Privacy Policy. By using this site, you consent to our data practices.</p>
-                    
-                    <h4 class="mt-4">6. Intellectual Property</h4>
-                    <p>All content on this site is protected by copyright. You may not use, reproduce, or distribute content without explicit permission.</p>
-                    
-                    <h4 class="mt-4">7. Disclaimer</h4>
-                    <p>KokoX is not responsible for user-generated content. All content is provided "as is" without warranties.</p>
-                    
-                    <h4 class="mt-4">8. Limitation of Liability</h4>
-                    <p>KokoX is not liable for any damages arising from your use of this service. Use at your own risk.</p>
-                    
-                    <h4 class="mt-4">9. Termination</h4>
-                    <p>We reserve the right to terminate access for violations of these terms at our sole discretion.</p>
-                    
-                    <h4 class="mt-4">10. Changes to Terms</h4>
-                    <p>We may update these terms at any time. Continued use constitutes acceptance of changes.</p>
-                    
+
+                    <h4>3. User Responsibilities</h4>
+                    <ul>
+                        <li>Verify your age before accessing content</li>
+                        <li>Respect copyright and intellectual property</li>
+                        <li>Use content for personal, non-commercial purposes</li>
+                        <li>Comply with all applicable laws</li>
+                    </ul>
+
+                    <h4>4. Legal Disclaimers</h4>
+                    <p>KokoX is not responsible for:</p>
+                    <ul>
+                        <li>User-generated content compliance</li>
+                        <li>Local law violations by users</li>
+                        <li>Third-party content accuracy</li>
+                        <li>Service interruptions or technical issues</li>
+                    </ul>
+
+                    <h4>5. Privacy and Data</h4>
+                    <p>Your privacy is important. See our <a href="/privacy">Privacy Policy</a> for detailed information about data collection and use.</p>
+
+                    <h4>6. Service Modifications</h4>
+                    <p>We reserve the right to:</p>
+                    <ul>
+                        <li>Modify or discontinue the service</li>
+                        <li>Update these terms at any time</li>
+                        <li>Terminate accounts for violations</li>
+                    </ul>
+
+                    <h4>7. Limitation of Liability</h4>
+                    <p>KokoX is provided "as is" without warranties. We are not liable for damages arising from your use of this service.</p>
+
                     <div class="alert alert-info mt-4">
-                        <strong>Contact:</strong> For questions about these terms, contact us at admin@kokox.com
+                        <strong>Last Updated:</strong> {{ moment().format('MMMM D, YYYY') }}<br>
+                        <strong>Questions:</strong> Contact us for any terms-related inquiries
                     </div>
-                    
+
                     <div class="text-center mt-4">
-                        <a href="{{ url_for('index') }}" class="btn btn-primary">
-                            <i class="fas fa-home"></i> Back to Home
-                        </a>
+                        <a href="/" class="btn btn-primary">Back to Home</a>
                     </div>
                 </div>
             </div>

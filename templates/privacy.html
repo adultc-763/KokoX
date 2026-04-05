@@ -1,94 +1,107 @@
 {% extends "base.html" %}
 
+{% block title %}Privacy Policy - KokoX{% endblock %}
+
 {% block content %}
-<div class="container py-5">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header">
                     <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info">
-                        <strong>Last Updated:</strong> {{ moment().format('MMMM D, YYYY') }}
+                        <strong>Your Privacy Matters:</strong> This policy explains how we collect, use, and protect your information on KokoX.
                     </div>
-                    
-                    <h4 class="mt-4">1. Information We Collect</h4>
-                    <p>We collect information you provide directly, including:</p>
+
+                    <h4>1. Information We Collect</h4>
+                    <p>We may collect:</p>
                     <ul>
-                        <li>Email address (for account creation)</li>
-                        <li>Username and password</li>
-                        <li>Viewing preferences</li>
-                        <li>Usage data and analytics</li>
+                        <li><strong>Email addresses</strong> for account creation</li>
+                        <li><strong>IP addresses</strong> for security and analytics</li>
+                        <li><strong>Browser information</strong> for optimal performance</li>
+                        <li><strong>Age verification data</strong> (stored securely)</li>
+                        <li><strong>Usage patterns</strong> to improve our service</li>
                     </ul>
-                    
-                    <h4 class="mt-4">2. How We Use Your Information</h4>
-                    <p>Your information is used to:</p>
+
+                    <h4>2. How We Use Your Information</h4>
                     <ul>
                         <li>Provide and maintain our service</li>
+                        <li>Verify age and legal compliance</li>
                         <li>Improve user experience</li>
-                        <li>Analyze site usage and performance</li>
-                        <li>Communicate with users</li>
-                        <li>Ensure site security</li>
+                        <li>Send important service updates</li>
+                        <li>Ensure platform security</li>
                     </ul>
-                    
-                    <h4 class="mt-4">3. Data Storage and Security</h4>
-                    <p>We implement appropriate security measures to protect your personal information:</p>
+
+                    <h4>3. Data Security</h4>
+                    <p>We implement:</p>
                     <ul>
-                        <li>Secure password hashing</li>
-                        <li>Encrypted data transmission</li>
-                        <li>Regular security updates</li>
-                        <li>Limited access to personal data</li>
+                        <li><strong>SSL encryption</strong> for all data transmission</li>
+                        <li><strong>Secure servers</strong> for data storage</li>
+                        <li><strong>Access controls</strong> to prevent unauthorized access</li>
+                        <li><strong>Regular security updates</strong> and monitoring</li>
                     </ul>
-                    
-                    <h4 class="mt-4">4. Cookies and Tracking</h4>
-                    <p>We use cookies and similar technologies to:</p>
+
+                    <h4>4. Cookies and Tracking</h4>
+                    <p>We use:</p>
                     <ul>
-                        <li>Remember your preferences</li>
-                        <li>Analyze site traffic</li>
-                        <li>Personalize content</li>
-                        <li>Age verification compliance</li>
+                        <li><strong>Essential cookies</strong> for site functionality</li>
+                        <li><strong>Age verification cookies</strong> (1-year duration)</li>
+                        <li><strong>Analytics cookies</strong> (optional)</li>
+                        <li><strong>Advertising cookies</strong> for revenue</li>
                     </ul>
-                    
-                    <h4 class="mt-4">5. Third-Party Services</h4>
-                    <p>We may share information with:</p>
+
+                    <h4>5. Third-Party Services</h4>
+                    <p>We partner with:</p>
                     <ul>
-                        <li>Payment processors (for transactions)</li>
-                        <li>Analytics providers (anonymized data)</li>
-                        <li>Content delivery networks</li>
-                        <li>Legal authorities when required</li>
+                        <li><strong>Payment processors</strong> for transactions</li>
+                        <li><strong>Ad networks</strong> for monetization</li>
+                        <li><strong>Analytics providers</strong> for insights</li>
+                        <li><strong>Content delivery networks</strong> for performance</li>
                     </ul>
-                    
-                    <h4 class="mt-4">6. Your Rights</h4>
+
+                    <h4>6. Your Rights</h4>
                     <p>You have the right to:</p>
                     <ul>
-                        <li>Access your personal data</li>
-                        <li>Correct inaccurate information</li>
-                        <li>Request data deletion</li>
-                        <li>Opt-out of marketing communications</li>
-                        <li>Data portability</li>
+                        <li><strong>Access</strong> your personal data</li>
+                        <li><strong>Correct</strong> inaccurate information</li>
+                        <li><strong>Delete</strong> your account and data</li>
+                        <li><strong>Opt-out</strong> of non-essential tracking</li>
+                        <li><strong>Complain</strong> to data protection authorities</li>
                     </ul>
-                    
-                    <h4 class="mt-4">7. Data Retention</h4>
-                    <p>We retain personal information only as long as necessary for the purposes outlined in this policy.</p>
-                    
-                    <h4 class="mt-4">8. International Users</h4>
-                    <p>Your data may be transferred to and processed in countries other than your own. We ensure appropriate protection measures.</p>
-                    
-                    <h4 class="mt-4">9. Children's Privacy</h4>
-                    <p>Our service is not intended for children under 18. We do not knowingly collect personal information from minors.</p>
-                    
-                    <h4 class="mt-4">10. Policy Updates</h4>
-                    <p>We may update this privacy policy. Changes will be posted on this page with an updated date.</p>
-                    
+
+                    <h4>7. Data Retention</h4>
+                    <p>We retain data:</p>
+                    <ul>
+                        <li><strong>Account data:</strong> Until account deletion</li>
+                        <li><strong>Usage data:</strong> 12 months maximum</li>
+                        <li><strong>Legal compliance:</strong> As required by law</li>
+                    </ul>
+
+                    <h4>8. International Transfers</h4>
+                    <p>Your data may be processed outside your country. We ensure adequate protection through:</p>
+                    <ul>
+                        <li>Standard contractual clauses</li>
+                        <li>Adequacy decisions where applicable</li>
+                        <li>Appropriate security measures</li>
+                    </ul>
+
+                    <h4>9. Contact Us</h4>
+                    <p>For privacy concerns:</p>
+                    <ul>
+                        <li>Email: privacy@koko-x.com</li>
+                        <li>Response time: Within 30 days</li>
+                        <li>Legal basis: GDPR and applicable laws</li>
+                    </ul>
+
                     <div class="alert alert-warning mt-4">
-                        <strong>Important:</strong> By using KokoX, you acknowledge that you have read and understood this Privacy Policy.
+                        <strong>Important:</strong> This policy may be updated. Changes will be posted on this page with effective date.
                     </div>
-                    
+
                     <div class="text-center mt-4">
-                        <a href="{{ url_for('index') }}" class="btn btn-primary">
-                            <i class="fas fa-home"></i> Back to Home
-                        </a>
+                        <a href="/" class="btn btn-primary">Back to Home</a>
+                        <a href="/terms" class="btn btn-outline-secondary">Terms of Service</a>
                     </div>
                 </div>
             </div>
