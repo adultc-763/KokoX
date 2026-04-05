@@ -1,14 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, FileField, SelectField, IntegerField, FloatField, BooleanField
-from wtforms.validators import DataRequired, Length, NumberRange
-from werkzeug.utils import secure_filename
-from werkzeug.security import generate_password_hash, check_password_hash
+import os
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import or_ as db_or_
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_wtf import FlaskForm, CSRFProtect
+from wtforms import StringField, TextAreaField, PasswordField, SelectField, BooleanField, FileField, IntegerField, FloatField
+from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
+from sqlalchemy import or_ as db_or_
 from PIL import Image
 from dotenv import load_dotenv
 
@@ -19,7 +20,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'your-secret-key-here')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'video_platform.db')
+# Database configuration - Use PostgreSQL in production, SQLite locally
+if os.getenv('DATABASE_URL'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'video_platform.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(basedir, 'static', 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024  # 500MB max file size
@@ -656,7 +661,7 @@ def save_settings():
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()
+        db.create_all()  # Create tables if they don't exist
         
         # Create admin user if not exists
         admin = User.query.filter_by(username='admin').first()
