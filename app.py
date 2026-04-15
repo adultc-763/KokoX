@@ -295,10 +295,7 @@ def watch_video(video_id):
                 if tag_video not in related_videos and len(related_videos) < 6:
                     related_videos.append(tag_video)
     
-    pre_roll_ad = Ad.query.filter_by(type='pre_roll', is_active=True).first()
-    banner_ad = Ad.query.filter_by(type='banner', is_active=True).first()
-    
-    return render_template('watch.html', video=video, related_videos=related_videos, pre_roll_ad=pre_roll_ad, banner_ad=banner_ad)
+    return render_template('watch.html', video=video, related_videos=related_videos)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
