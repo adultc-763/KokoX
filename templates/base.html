@@ -159,42 +159,60 @@
 
     <!-- Banner Ad -->
     {% if ads.banner and ads.banner.is_active %}
-    <div class="container mt-4">
+    <div class="container mt-4" style="padding: 0; overflow-x: hidden;">
         <div class="text-center">
             <style>
-                .mobile-banner-container {
-                    width: 100%;
-                    overflow-x: hidden;
+                .mobile-banner-fix {
+                    position: relative;
+                    width: 100vw;
+                    max-width: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    overflow: hidden;
                     box-sizing: border-box;
                 }
-                .mobile-banner-container > div {
+                .mobile-banner-fix > div {
                     max-width: 100%;
                     overflow: hidden;
-                    transform-origin: left center;
+                    margin: 0 auto;
                 }
-                @media (max-width: 767px) {
-                    .mobile-banner-container > div {
-                        transform: scale(0.9);
-                        width: 111%; /* 100% / 0.9 */
-                        margin-left: -5.5%;
+                @media (max-width: 768px) {
+                    .mobile-banner-fix > div {
+                        width: 100% !important;
+                        max-width: 100vw !important;
+                        transform: scale(0.85);
+                        transform-origin: center center;
+                        height: 77px !important;
+                    }
+                    .mobile-banner-fix > div > iframe {
+                        width: 100% !important;
+                        max-width: 100vw !important;
+                        height: 77px !important;
                     }
                 }
                 @media (max-width: 480px) {
-                    .mobile-banner-container > div {
-                        transform: scale(0.8);
-                        width: 125%; /* 100% / 0.8 */
-                        margin-left: -12.5%;
+                    .mobile-banner-fix > div {
+                        transform: scale(0.75);
+                        height: 68px !important;
+                    }
+                    .mobile-banner-fix > div > iframe {
+                        height: 68px !important;
                     }
                 }
                 @media (max-width: 360px) {
-                    .mobile-banner-container > div {
-                        transform: scale(0.7);
-                        width: 143%; /* 100% / 0.7 */
-                        margin-left: -21.5%;
+                    .mobile-banner-fix > div {
+                        transform: scale(0.65);
+                        height: 59px !important;
+                    }
+                    .mobile-banner-fix > div > iframe {
+                        height: 59px !important;
                     }
                 }
+                body {
+                    overflow-x: hidden !important;
+                }
             </style>
-            <div class="mobile-banner-container">
+            <div class="mobile-banner-fix">
                 <script>
                   atOptions = {
                     'key' : 'e458dc349f99e4ca0b64bfa6b7555153',
