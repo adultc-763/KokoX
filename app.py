@@ -199,6 +199,11 @@ def inject_ads():
     
     return {'ads': ad_codes}
 
+@app.route('/health')
+def health_check():
+    """Health check endpoint for cron jobs - no age verification required"""
+    return "OK", 200
+
 @app.route('/age-verify')
 def age_verification():
     # Don't redirect if already on age verification page
