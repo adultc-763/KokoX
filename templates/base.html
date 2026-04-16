@@ -162,18 +162,39 @@
     <div class="container mt-4">
         <div class="text-center">
             <style>
-                .responsive-banner {
+                .mobile-banner-container {
+                    width: 100%;
+                    overflow-x: hidden;
+                    box-sizing: border-box;
+                }
+                .mobile-banner-container > div {
                     max-width: 100%;
                     overflow: hidden;
+                    transform-origin: left center;
                 }
-                @media (max-width: 768px) {
-                    .responsive-banner iframe {
-                        max-width: 100%;
-                        height: auto;
+                @media (max-width: 767px) {
+                    .mobile-banner-container > div {
+                        transform: scale(0.9);
+                        width: 111%; /* 100% / 0.9 */
+                        margin-left: -5.5%;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .mobile-banner-container > div {
+                        transform: scale(0.8);
+                        width: 125%; /* 100% / 0.8 */
+                        margin-left: -12.5%;
+                    }
+                }
+                @media (max-width: 360px) {
+                    .mobile-banner-container > div {
+                        transform: scale(0.7);
+                        width: 143%; /* 100% / 0.7 */
+                        margin-left: -21.5%;
                     }
                 }
             </style>
-            <div class="responsive-banner">
+            <div class="mobile-banner-container">
                 <script>
                   atOptions = {
                     'key' : 'e458dc349f99e4ca0b64bfa6b7555153',
