@@ -199,24 +199,6 @@ def inject_ads():
     
     return {'ads': ad_codes}
 
-@app.route('/health')
-def health_check():
-    """Health check endpoint for cron jobs - no age verification required"""
-    return "OK", 200
-
-@app.route('/age-verify')
-def age_verification():
-    # Don't redirect if already on age verification page
-    if request.referrer and 'age-verify' in request.referrer:
-        return render_template('age_verify.html')
-    
-    # Check if already verified
-    age_verified = request.cookies.get('age_verified')
-    if age_verified == 'true':
-        return redirect(url_for('index'))
-    
-    return render_template('age_verify.html')
-
 @app.route('/terms')
 def terms():
     return render_template('terms.html')
@@ -227,11 +209,6 @@ def privacy():
 
 @app.route('/')
 def index():
-    # Check age verification (but not if coming from age verification page)
-    age_verified = request.cookies.get('age_verified')
-    if not age_verified or age_verified != 'true':
-        return redirect(url_for('age_verification'))
-    
     page = request.args.get('page', 1, type=int)
     search = request.args.get('search', '').strip()
     category_filter = request.args.get('category', '')
@@ -262,11 +239,6 @@ def index():
 
 @app.route('/video/<int:video_id>')
 def watch_video(video_id):
-    # Check age verification
-    age_verified = request.cookies.get('age_verified')
-    if not age_verified or age_verified != 'true':
-        return redirect(url_for('age_verification'))
-    
     video = Video.query.get_or_404(video_id)
     if not video.is_published:
         flash('This video is not available.')
@@ -300,7 +272,10 @@ def watch_video(video_id):
                 if tag_video not in related_videos and len(related_videos) < 6:
                     related_videos.append(tag_video)
     
-    return render_template('watch.html', video=video, related_videos=related_videos)
+    pre_roll_ad = Ad.query.filter_by(type='pre_roll', is_active=True).first()
+    banner_ad = Ad.query.filter_by(type='banner', is_active=True).first()
+    
+    return render_template('watch.html', video=video, related_videos=related_videos, pre_roll_ad=pre_roll_ad, banner_ad=banner_ad)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
